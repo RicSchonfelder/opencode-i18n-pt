@@ -51,7 +51,7 @@ export const registerToolPlugin = <R>(plugin: {
     const context: Pick<PluginContext, "session" | "tool"> = {
       session: {
         hook: () => Effect.succeed({ dispose: Effect.void }),
-      } as PluginContext["session"],
+      } as unknown as PluginContext["session"],
       tool: {
         transform: (callback) =>
           Effect.gen(function* () {
