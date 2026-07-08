@@ -48,7 +48,10 @@ export const registerToolPlugin = <R>(plugin: {
 }): Effect.Effect<void, never, R | Tools.Service | Scope.Scope> =>
   Effect.gen(function* () {
     const tools = yield* Tools.Service
-    const context: Pick<PluginContext, "tool"> = {
+    const context: Pick<PluginContext, "session" | "tool"> = {
+      session: {
+        hook: () => Effect.succeed({ dispose: Effect.void }),
+      } as PluginContext["session"],
       tool: {
         transform: (callback) =>
           Effect.gen(function* () {

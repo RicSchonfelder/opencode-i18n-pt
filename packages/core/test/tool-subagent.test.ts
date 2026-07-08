@@ -19,6 +19,7 @@ import { SessionMessage } from "@opencode-ai/core/session/message"
 import { SessionRunnerModel } from "@opencode-ai/core/session/runner/model"
 import { SessionStore } from "@opencode-ai/core/session/store"
 import { PluginRuntime } from "@opencode-ai/core/plugin/runtime"
+import { PluginSupervisor } from "@opencode-ai/core/plugin/supervisor"
 import { SubagentTool } from "@opencode-ai/core/tool/subagent"
 import { ToolRegistry } from "@opencode-ai/core/tool/registry"
 import { ToolOutputStore } from "@opencode-ai/core/tool-output-store"
@@ -105,8 +106,11 @@ const it = testEffect(layer)
 const withSubagent = (location: Location.Ref) =>
   Effect.gen(function* () {
     const locations = yield* LocationServiceMap.Service
+    const context = locations.get(location)
+    yield* PluginSupervisor.Service.use((supervisor) => supervisor.ready).pipe(Effect.provide(context))
     yield* AgentV2.Service.use((agents) =>
       agents.transform((draft) => {
+        draft.update(AgentV2.ID.make("build"), () => {})
         draft.update(AgentV2.ID.make("reviewer"), (agent) => {
           agent.mode = "subagent"
           agent.model = childModel
@@ -118,7 +122,7 @@ const withSubagent = (location: Location.Ref) =>
           agent.mode = "primary"
         })
       }),
-    ).pipe(Effect.provide(locations.get(location)))
+    ).pipe(Effect.provide(context))
   })
 
 describe("SubagentTool", () => {
