@@ -8,6 +8,7 @@ import { useSDK } from "../../context/sdk"
 import { SplitBorder } from "../../ui/border"
 import { useTuiConfig } from "../../config"
 import { useBindings, useOpencodeModeStack } from "../../keymap"
+import { t } from "../../i18n"
 
 const QUESTION_MODE = "question"
 
@@ -217,7 +218,7 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
       commands: [
         {
           name: "app.exit",
-          title: "Reject question",
+          title: t("question.rejectQuestion"),
           category: "Question",
           run() {
             reject()
@@ -227,21 +228,21 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
       bindings: [
         {
           key: "left",
-          desc: "Previous question",
+          desc: t("question.previous"),
           group: "Question",
           cmd: () => selectTab((store.tab - 1 + tabs()) % tabs()),
         },
         {
           key: "h",
-          desc: "Previous question",
+          desc: t("question.previous"),
           group: "Question",
           cmd: () => selectTab((store.tab - 1 + tabs()) % tabs()),
         },
-        { key: "right", desc: "Next question", group: "Question", cmd: () => selectTab((store.tab + 1) % tabs()) },
-        { key: "l", desc: "Next question", group: "Question", cmd: () => selectTab((store.tab + 1) % tabs()) },
+        { key: "right", desc: t("question.next"), group: "Question", cmd: () => selectTab((store.tab + 1) % tabs()) },
+        { key: "l", desc: t("question.next"), group: "Question", cmd: () => selectTab((store.tab + 1) % tabs()) },
         {
           key: "tab",
-          desc: "Next question",
+          desc: t("question.next"),
           group: "Question",
           cmd: ({ event }: { event: { shift: boolean } }) => {
             selectTab((store.tab + (event.shift ? -1 : 1) + tabs()) % tabs())
@@ -250,7 +251,7 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
         ...(confirm()
           ? [
               { key: "return", desc: "Submit answer", group: "Question", cmd: () => submit() },
-              { key: "escape", desc: "Reject question", group: "Question", cmd: () => reject() },
+              { key: "escape", desc: t("question.rejectQuestion"), group: "Question", cmd: () => reject() },
               ...tuiConfig.keybinds.get("app.exit"),
             ]
           : [
@@ -265,20 +266,20 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
               })),
               {
                 key: "up",
-                desc: "Previous answer",
+                desc: t("question.previous"),
                 group: "Question",
                 cmd: () => moveTo((store.selected - 1 + total) % total),
               },
               {
                 key: "k",
-                desc: "Previous answer",
+                desc: t("question.previous"),
                 group: "Question",
                 cmd: () => moveTo((store.selected - 1 + total) % total),
               },
-              { key: "down", desc: "Next answer", group: "Question", cmd: () => moveTo((store.selected + 1) % total) },
-              { key: "j", desc: "Next answer", group: "Question", cmd: () => moveTo((store.selected + 1) % total) },
+              { key: "down", desc: t("question.next"), group: "Question", cmd: () => moveTo((store.selected + 1) % total) },
+              { key: "j", desc: t("question.next"), group: "Question", cmd: () => moveTo((store.selected + 1) % total) },
               { key: "return", desc: "Select answer", group: "Question", cmd: () => selectOption() },
-              { key: "escape", desc: "Reject question", group: "Question", cmd: () => reject() },
+              { key: "escape", desc: t("question.rejectQuestion"), group: "Question", cmd: () => reject() },
               ...tuiConfig.keybinds.get("app.exit"),
             ]),
       ],
@@ -434,7 +435,7 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
                           })
                         }}
                         initialValue={input()}
-                        placeholder="Type your own answer"
+                        placeholder={t("question.typeOwnAnswer")}
                         placeholderColor={theme.textMuted}
                         minHeight={1}
                         maxHeight={6}

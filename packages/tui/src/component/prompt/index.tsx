@@ -11,6 +11,7 @@ import {
 import type { CommandContext } from "@opentui/keymap"
 import { createEffect, createMemo, onMount, createSignal, onCleanup, on, Show, Switch, Match } from "solid-js"
 import { registerOpencodeSpinner } from "../register-spinner"
+import { t } from "../../i18n"
 import path from "path"
 import { fileURLToPath } from "url"
 import { useLocal } from "../../context/local"
@@ -1313,10 +1314,10 @@ export function Prompt(props: PromptProps) {
     if (store.mode === "shell") {
       if (!shell().length) return undefined
       const example = shell()[store.placeholder % shell().length]
-      return `Run a command... "${example}"`
+      return t("prompt.runCommand", { example })
     }
     if (!list().length) return undefined
-    return `Ask anything... "${list()[store.placeholder % list().length]}"`
+    return t("prompt.askAnything", { example: list()[store.placeholder % list().length] })
   })
 
   const spinnerDef = createMemo(() => {

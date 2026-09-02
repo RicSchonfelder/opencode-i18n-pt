@@ -5,6 +5,7 @@ import { useDialog } from "../ui/dialog"
 import { useSDK } from "../context/sdk"
 import { useTheme } from "../context/theme"
 import { errorMessage } from "../util/error"
+import { t } from "../i18n"
 
 export type DialogSkillProps = {
   onSelect: (skill: string) => void
@@ -51,7 +52,7 @@ export function DialogSkill(props: DialogSkillProps) {
   return (
     <DialogSelect
       title="Skills"
-      placeholder="Search skills..."
+      placeholder={t("common.searchSkills")}
       options={options()}
       renderFilter={!showError()}
       locked={showError()}

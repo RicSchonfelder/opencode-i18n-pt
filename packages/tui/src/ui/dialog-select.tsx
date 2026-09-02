@@ -8,6 +8,7 @@ import {
 } from "@opentui/core"
 import type { Binding } from "@opentui/keymap"
 import { useTheme, selectedForeground } from "../context/theme"
+import { t } from "../i18n"
 import { entries, filter, flatMap, groupBy, pipe } from "remeda"
 import { batch, createEffect, createMemo, createSignal, For, Show, type JSX, on, onCleanup } from "solid-js"
 import { createStore } from "solid-js/store"
@@ -590,7 +591,7 @@ export function DialogSelect<T>(props: DialogSelectProps<T>) {
                   input.focus()
                 }, 1)
               }}
-              placeholder={props.placeholder ?? "Search"}
+              placeholder={props.placeholder ?? t("common.search")}
               placeholderColor={theme.textMuted}
             />
           </box>

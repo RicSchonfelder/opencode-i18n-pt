@@ -11,6 +11,7 @@ import { useSync } from "../../context/sync"
 import { useProject } from "../../context/project"
 import { filetype } from "../../util/filetype"
 import { Locale } from "../../util/locale"
+import { t } from "../../i18n"
 import { webSearchProviderLabel } from "../../util/tool-display"
 import { getScrollAcceleration } from "../../util/scroll"
 import { useTuiConfig } from "../../config"
@@ -137,7 +138,7 @@ export function PermissionPrompt(props: { request: PermissionRequest; directory?
     <Switch>
       <Match when={store.stage === "always"}>
         <Prompt
-          title="Always allow"
+          title={t("permission.alwaysAllow")}
           body={
             <Switch>
               <Match when={props.request.always.length === 1 && props.request.always[0] === "*"}>
@@ -160,7 +161,7 @@ export function PermissionPrompt(props: { request: PermissionRequest; directory?
               </Match>
             </Switch>
           }
-          options={{ confirm: "Confirm", cancel: "Cancel" }}
+          options={{ confirm: t("common.confirm"), cancel: t("common.cancel") }}
           escapeKey="cancel"
           onSelect={(option) => {
             setStore("stage", "permission")
@@ -402,7 +403,7 @@ export function PermissionPrompt(props: { request: PermissionRequest; directory?
               title="Permission required"
               header={header()}
               body={current.body}
-              options={{ once: "Allow once", always: "Allow always", reject: "Reject" }}
+              options={{ once: t("permission.allowOnce"), always: t("permission.allowAlways"), reject: t("permission.reject") }}
               escapeKey="reject"
               fullscreen
               onSelect={(option) => {
@@ -463,7 +464,7 @@ function RejectPrompt(props: { onConfirm: (message: string) => void; onCancel: (
       ...tuiConfig.keybinds.get("app.exit"),
       {
         key: "return",
-        desc: "Confirm permission rejection",
+        desc: t("permission.confirmRejection"),
         group: "Permission",
         cmd: () => props.onConfirm(input.plainText),
       },
@@ -547,7 +548,7 @@ function Prompt<const T extends Record<string, string>>(props: {
     commands: [
       {
         name: "app.exit",
-        title: "Reject permission",
+        title: t("permission.rejectPermission"),
         category: "Permission",
         run() {
           if (!props.escapeKey) return
@@ -615,7 +616,7 @@ function Prompt<const T extends Record<string, string>>(props: {
         ? [
             {
               key: "escape",
-              desc: "Reject permission",
+              desc: t("permission.rejectPermission"),
               group: "Permission",
               cmd: () => props.onSelect(props.escapeKey!),
             },

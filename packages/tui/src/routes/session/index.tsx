@@ -14,6 +14,7 @@ import {
   untrack,
   useContext,
 } from "solid-js"
+import { t } from "../../i18n"
 import { Dynamic } from "solid-js/web"
 import path from "node:path"
 import { mkdir, writeFile } from "node:fs/promises"
@@ -881,7 +882,7 @@ export function Session() {
       run: () => {
         const lastAssistantMessage = messagesBeforeRevert().findLast((message) => message.role === "assistant")
         if (!lastAssistantMessage) {
-          toast.show({ message: "No assistant messages found", variant: "error" })
+          toast.show({ message: t("toast.noAssistantMessages"), variant: "error" })
           dialog.clear()
           return
         }
@@ -889,7 +890,7 @@ export function Session() {
         const parts = sync.data.part[lastAssistantMessage.id] ?? []
         const textParts = parts.filter((part) => part.type === "text")
         if (textParts.length === 0) {
-          toast.show({ message: "No text parts found in last assistant message", variant: "error" })
+          toast.show({ message: t("toast.noTextParts"), variant: "error" })
           dialog.clear()
           return
         }
@@ -900,7 +901,7 @@ export function Session() {
           .trim()
         if (!text) {
           toast.show({
-            message: "No text content found in last assistant message",
+            message: t("toast.noTextContent"),
             variant: "error",
           })
           dialog.clear()
@@ -1209,7 +1210,7 @@ export function Session() {
                           const handleUnrevert = async () => {
                             const confirmed = await DialogConfirm.show(
                               dialog,
-                              "Confirm Redo",
+                              t("toast.confirmRedo"),
                               "Are you sure you want to restore the reverted messages?",
                             )
                             if (confirmed) {

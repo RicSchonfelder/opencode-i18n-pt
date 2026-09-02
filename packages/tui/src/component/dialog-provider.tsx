@@ -13,6 +13,7 @@ import { DialogModel } from "./dialog-model"
 import { useToast } from "../ui/toast"
 import { isConsoleManagedProvider } from "../util/provider-origin"
 import { useConnected } from "./use-connected"
+import { t } from "../i18n"
 import { useBindings } from "../keymap"
 import { useClipboard } from "../context/clipboard"
 
@@ -93,7 +94,7 @@ export function createDialogProviderOptions() {
 
   async function promptCustomProviderID(): Promise<string | undefined> {
     const value = await DialogPrompt.show(dialog, "Other", {
-      placeholder: "Provider id",
+      placeholder: t("common.enterText"),
       description: () => (
         <text fg={theme.textMuted}>
           This only stores a credential. Configure the provider in opencode.json to use it.
@@ -321,7 +322,7 @@ function CodeMethod(props: CodeMethodProps) {
   return (
     <DialogPrompt
       title={props.title}
-      placeholder="Authorization code"
+      placeholder={t("common.enterText")}
       onConfirm={async (value) => {
         const { error } = await sdk.client.provider.oauth.callback({
           providerID: props.providerID,
@@ -365,7 +366,7 @@ function ApiMethod(props: ApiMethodProps) {
   return (
     <DialogPrompt
       title={props.title}
-      placeholder="API key"
+      placeholder={t("common.enterText")}
       description={() =>
         ({
           opencode: (

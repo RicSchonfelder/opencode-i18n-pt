@@ -5,6 +5,7 @@ import { Show, createEffect, createSignal, onMount, type JSX } from "solid-js"
 import { Spinner } from "../component/spinner"
 import { useTuiConfig } from "../config"
 import { useBindings, useCommandShortcut } from "../keymap"
+import { t } from "../i18n"
 
 export type DialogPromptProps = {
   title: string
@@ -91,7 +92,7 @@ export function DialogPrompt(props: DialogPromptProps) {
             setTextareaTarget(val)
           }}
           initialValue={props.value}
-          placeholder={props.placeholder ?? "Enter text"}
+          placeholder={props.placeholder ?? t("common.enterText")}
           placeholderColor={theme.textMuted}
           textColor={props.busy ? theme.textMuted : theme.text}
           focusedTextColor={props.busy ? theme.textMuted : theme.text}
