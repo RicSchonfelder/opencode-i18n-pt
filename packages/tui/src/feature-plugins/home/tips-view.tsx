@@ -68,7 +68,7 @@ function parse(tip: string): TipPart[] {
   return parts
 }
 
-const NO_MODELS_TIP = "Run {highlight}/connect{/highlight} to add an AI provider and start coding"
+const NO_MODELS_TIP = "Execute {highlight}/connect{/highlight} para adicionar um provedor de IA e começar a codar"
 const NO_MODELS_PARTS = parse(NO_MODELS_TIP)
 
 function shortcutText(value: string) {
@@ -77,12 +77,12 @@ function shortcutText(value: string) {
 
 function commandText(command: string, shortcut: string) {
   if (!shortcut) return shortcutText(command)
-  return `${shortcutText(command)} or ${shortcutText(shortcut)}`
+  return `${shortcutText(command)} ou ${shortcutText(shortcut)}`
 }
 
 function press(shortcut: string, text: string) {
   if (!shortcut) return undefined
-  return `Press ${shortcutText(shortcut)} ${text}`
+  return `Pressione ${shortcutText(shortcut)} ${text}`
 }
 
 function configShortcut(api: TuiPluginApi, command: string): TipShortcut {
@@ -150,7 +150,7 @@ export function Tips(props: { api: TuiPluginApi; connected?: boolean }) {
   return (
     <box flexDirection="row" maxWidth="100%">
       <text flexShrink={0} style={{ fg: theme.warning }}>
-        ● Tip{" "}
+        ● Dica{" "}
       </text>
       <text flexShrink={1} wrapMode="word">
         <For each={parts()}>
@@ -162,44 +162,44 @@ export function Tips(props: { api: TuiPluginApi; connected?: boolean }) {
 }
 
 const TIPS: Tip[] = [
-  "Type {highlight}@{/highlight} followed by a filename to fuzzy search and attach files",
-  "Start a message with {highlight}!{/highlight} to run shell commands (e.g., {highlight}!ls -la{/highlight})",
-  (shortcuts) => press(shortcuts.agentCycle(), "to cycle between Build and Plan agents"),
-  "Use {highlight}/undo{/highlight} to revert the last message and file changes",
-  "Use {highlight}/redo{/highlight} to restore previously undone messages and file changes",
-  "Run {highlight}/share{/highlight} to create a public opencode.ai link",
-  "Drag and drop images or PDFs into the terminal as context",
-  (shortcuts) => press(shortcuts.inputPaste(), "to paste images from your clipboard into the prompt"),
-  (shortcuts) => `Use ${commandText("/editor", shortcuts.editorOpen())} to compose messages in your external editor`,
-  "Run {highlight}/init{/highlight} to auto-generate project rules based on your codebase",
-  (shortcuts) => `Use ${commandText("/models", shortcuts.modelList())} to switch between available AI models`,
-  (shortcuts) => `Use ${commandText("/themes", shortcuts.themeList())} to switch between ${themeCount} built-in themes`,
-  (shortcuts) => `Use ${commandText("/new", shortcuts.sessionNew())} to start a fresh conversation session`,
-  (shortcuts) => `Use ${commandText("/sessions", shortcuts.sessionList())} to list, pin, and continue sessions`,
-  (shortcuts) => press(shortcuts.sessionPinToggle(), "in the session list to pin one at the top"),
+  "Digite {highlight}@{/highlight} seguido de um nome de arquivo para pesquisar e anexar arquivos",
+  "Comece uma mensagem com {highlight}!{/highlight} para executar comandos de shell (ex.: {highlight}!ls -la{/highlight})",
+  (shortcuts) => press(shortcuts.agentCycle(), "para alternar entre os agentes Build e Plan"),
+  "Use {highlight}/undo{/highlight} para reverter a última mensagem e as alterações de arquivos",
+  "Use {highlight}/redo{/highlight} para restaurar mensagens e alterações de arquivos anteriormente desfeitas",
+  "Execute {highlight}/share{/highlight} para criar um link público do opencode.ai",
+  "Arraste e solte imagens ou PDFs no terminal como contexto",
+  (shortcuts) => press(shortcuts.inputPaste(), "para colar imagens da área de transferência no prompt"),
+  (shortcuts) => `Use ${commandText("/editor", shortcuts.editorOpen())} para compor mensagens no seu editor externo`,
+  "Execute {highlight}/init{/highlight} para gerar automaticamente regras de projeto baseadas no seu código",
+  (shortcuts) => `Use ${commandText("/models", shortcuts.modelList())} para alternar entre os modelos de IA disponíveis`,
+  (shortcuts) => `Use ${commandText("/themes", shortcuts.themeList())} para alternar entre ${themeCount} temas integrados`,
+  (shortcuts) => `Use ${commandText("/new", shortcuts.sessionNew())} para iniciar uma nova conversa`,
+  (shortcuts) => `Use ${commandText("/sessions", shortcuts.sessionList())} para listar, fixar e continuar sessões`,
+  (shortcuts) => press(shortcuts.sessionPinToggle(), "na lista de sessões para fixar uma no topo"),
   (shortcuts) =>
     shortcuts.sessionQuickSwitch1() && shortcuts.sessionQuickSwitch9()
-      ? `Use ${shortcutText(shortcuts.sessionQuickSwitch1())} through ${shortcutText(shortcuts.sessionQuickSwitch9())} to switch pinned sessions`
+      ? `Use ${shortcutText(shortcuts.sessionQuickSwitch1())} a ${shortcutText(shortcuts.sessionQuickSwitch9())} para alternar entre sessões fixadas`
       : undefined,
-  "Run {highlight}/compact{/highlight} to summarize long sessions near context limits",
-  (shortcuts) => `Use ${commandText("/export", shortcuts.sessionExport())} to save the conversation as Markdown`,
-  (shortcuts) => press(shortcuts.messagesCopy(), "to copy the assistant's last message to clipboard"),
-  (shortcuts) => press(shortcuts.commandList(), "to see all available actions and commands"),
-  "Run {highlight}/connect{/highlight} to add API keys for 75+ supported LLM providers",
-  (shortcuts) => `The leader key is ${shortcutText(shortcuts.leader())}; combine with other keys for quick actions`,
-  (shortcuts) => press(shortcuts.modelCycleRecent(), "to quickly switch between recently used models"),
-  (shortcuts) => press(shortcuts.sessionSidebarToggle(), "in a session to show or hide the sidebar panel"),
+  "Execute {highlight}/compact{/highlight} para resumir sessões longas próximas dos limites de contexto",
+  (shortcuts) => `Use ${commandText("/export", shortcuts.sessionExport())} para salvar a conversa como Markdown`,
+  (shortcuts) => press(shortcuts.messagesCopy(), "para copiar a última mensagem do assistente para a área de transferência"),
+  (shortcuts) => press(shortcuts.commandList(), "para ver todas as ações e comandos disponíveis"),
+  "Execute {highlight}/connect{/highlight} para adicionar chaves de API para mais de 75 provedores de LLM suportados",
+  (shortcuts) => `A tecla líder é ${shortcutText(shortcuts.leader())}; combine com outras teclas para ações rápidas`,
+  (shortcuts) => press(shortcuts.modelCycleRecent(), "para alternar rapidamente entre modelos usados recentemente"),
+  (shortcuts) => press(shortcuts.sessionSidebarToggle(), "em uma sessão para mostrar ou ocultar o painel lateral"),
   (shortcuts) =>
     shortcuts.messagesPageUp() && shortcuts.messagesPageDown()
-      ? `Use ${shortcutText(shortcuts.messagesPageUp())}/${shortcutText(shortcuts.messagesPageDown())} to navigate through conversation history`
+      ? `Use ${shortcutText(shortcuts.messagesPageUp())}/${shortcutText(shortcuts.messagesPageDown())} para navegar pelo histórico da conversa`
       : undefined,
-  (shortcuts) => press(shortcuts.messagesFirst(), "to jump to the beginning of the conversation"),
-  (shortcuts) => press(shortcuts.messagesLast(), "to jump to the most recent message"),
-  (shortcuts) => press(shortcuts.inputNewline(), "to add newlines in your prompt"),
-  (shortcuts) => press(shortcuts.inputClear(), "when typing to clear the input field"),
-  (shortcuts) => press(shortcuts.sessionInterrupt(), "to stop the AI mid-response"),
-  "Switch to {highlight}Plan{/highlight} agent for suggestions without making changes",
-  "Use {highlight}@agent-name{/highlight} in prompts to invoke specialized subagents",
+  (shortcuts) => press(shortcuts.messagesFirst(), "para ir ao início da conversa"),
+  (shortcuts) => press(shortcuts.messagesLast(), "para ir à mensagem mais recente"),
+  (shortcuts) => press(shortcuts.inputNewline(), "para adicionar novas linhas no seu prompt"),
+  (shortcuts) => press(shortcuts.inputClear(), "ao digitar, para limpar o campo de entrada"),
+  (shortcuts) => press(shortcuts.sessionInterrupt(), "para interromper a IA no meio da resposta"),
+  "Alterne para o agente {highlight}Plan{/highlight} para sugestões sem fazer alterações",
+  "Use {highlight}@nome-do-agente{/highlight} nos prompts para invocar subagentes especializados",
   (shortcuts) => {
     const items = [
       shortcuts.sessionParent(),
@@ -208,80 +208,80 @@ const TIPS: Tip[] = [
       shortcuts.childNext(),
     ].filter(Boolean)
     if (!items.length) return undefined
-    return `Use ${items.map(shortcutText).join(" / ")} for parent/child sessions`
+    return `Use ${items.map(shortcutText).join(" / ")} para sessões pai/filha`
   },
-  "Create {highlight}opencode.json{/highlight} for server settings, and {highlight}tui.json{/highlight} for TUI",
-  "Place TUI settings in {highlight}~/.config/opencode/tui.json{/highlight} for global config",
-  "Add {highlight}$schema{/highlight} to your config for autocomplete in your editor",
-  "Configure {highlight}model{/highlight} in config to set your default model",
-  "Override any keybind in {highlight}tui.json{/highlight} via the {highlight}keybinds{/highlight} section",
-  "Set any keybind to {highlight}none{/highlight} to disable it completely",
-  "Configure local or remote MCP servers in the {highlight}mcp{/highlight} config section",
-  "Add {highlight}.md{/highlight} files to {highlight}.opencode/commands/{/highlight} for reusable prompts",
-  "Use {highlight}$ARGUMENTS{/highlight}, {highlight}$1{/highlight}, {highlight}$2{/highlight} in custom commands for dynamic input",
-  "Use backticks to inject shell output (e.g., {highlight}`git status`{/highlight})",
-  "Add {highlight}.md{/highlight} files to {highlight}.opencode/agents/{/highlight} for specialized AI personas",
-  "Configure per-agent permissions for {highlight}edit{/highlight}, {highlight}bash{/highlight}, and {highlight}webfetch{/highlight} tools",
-  'Use patterns like {highlight}"git *": "allow"{/highlight} for granular bash permissions',
-  'Set {highlight}"rm -rf *": "deny"{/highlight} to block destructive commands',
-  'Configure {highlight}"git push": "ask"{/highlight} to require approval before pushing',
-  'Set {highlight}"formatter": true{/highlight} to enable built-in formatters',
-  'Set {highlight}"formatter": false{/highlight} to disable inherited formatters',
-  "Define custom formatter commands with file extensions in config",
-  'Set {highlight}"lsp": true{/highlight} to enable built-in LSP code analysis',
-  "Create {highlight}.ts{/highlight} files in {highlight}.opencode/tools/{/highlight} to define new LLM tools",
-  "Tool definitions can invoke scripts written in Python, Go, etc",
-  "Add {highlight}.ts{/highlight} files to {highlight}.opencode/plugins/{/highlight} for event hooks",
-  "Use plugins to send OS notifications when sessions complete",
-  "Create a plugin to prevent OpenCode from reading sensitive files",
-  "Use {highlight}opencode run{/highlight} for non-interactive scripting",
-  "Use {highlight}opencode --continue{/highlight} to resume the last session",
-  "Use {highlight}opencode run -f file.ts{/highlight} to attach files via CLI",
-  "Use {highlight}--format json{/highlight} for machine-readable output in scripts",
-  "Run {highlight}opencode serve{/highlight} for headless API access to OpenCode",
-  "Use {highlight}opencode run --attach{/highlight} to connect to a running server",
-  "Run {highlight}opencode upgrade{/highlight} to update to the latest version",
-  "Run {highlight}opencode auth list{/highlight} to see all configured providers",
-  "Run {highlight}opencode agent create{/highlight} for guided agent creation",
-  "Use {highlight}/opencode{/highlight} in GitHub issues/PRs to trigger AI actions",
-  "Run {highlight}opencode github install{/highlight} to set up the GitHub workflow",
-  "Comment {highlight}/opencode fix this{/highlight} on issues to auto-create PRs",
-  "Comment {highlight}/oc{/highlight} on PR code lines for targeted code reviews",
-  'Use {highlight}"theme": "system"{/highlight} to match your terminal\'s colors',
-  "Create JSON theme files in {highlight}.opencode/themes/{/highlight} directory",
-  "Themes support dark/light variants for both modes",
-  "Use numeric xterm color codes 0-255 in custom theme JSON",
-  "Use {highlight}{env:VAR_NAME}{/highlight} for environment variables in config",
-  "Use {highlight}{file:path}{/highlight} to include file contents in config values",
-  "Use {highlight}instructions{/highlight} in config to load additional rules files",
-  "Set agent {highlight}temperature{/highlight} from 0.0 (focused) to 1.0 (creative)",
-  "Configure {highlight}steps{/highlight} to limit agentic iterations per request",
-  'Set {highlight}"tools": {"bash": false}{/highlight} to disable specific tools',
-  'Set {highlight}"mcp_*": false{/highlight} to disable all tools from an MCP server',
-  "Override global tool settings per agent configuration",
-  'Set {highlight}"share": "auto"{/highlight} to automatically share all sessions',
-  'Set {highlight}"share": "disabled"{/highlight} to prevent any session sharing',
-  "Run {highlight}/unshare{/highlight} to remove a session from public access",
-  "Permission {highlight}doom_loop{/highlight} prevents infinite tool call loops",
-  "Permission {highlight}external_directory{/highlight} protects files outside project",
-  "Run {highlight}opencode debug config{/highlight} to troubleshoot configuration",
-  "Use {highlight}--print-logs{/highlight} flag to see detailed logs in stderr",
-  (shortcuts) => `Use ${commandText("/timeline", shortcuts.sessionTimeline())} to jump to specific messages`,
-  (shortcuts) => press(shortcuts.messagesToggleConceal(), "to toggle code block visibility in messages"),
-  (shortcuts) => `Use ${commandText("/status", shortcuts.statusView())} to see system status info`,
-  "Enable {highlight}scroll_acceleration{/highlight} in {highlight}tui.json{/highlight} for smooth scrolling",
+  "Crie {highlight}opencode.json{/highlight} para configurações do servidor e {highlight}tui.json{/highlight} para a TUI",
+  "Coloque as configurações da TUI em {highlight}~/.config/opencode/tui.json{/highlight} para config global",
+  "Adicione {highlight}$schema{/highlight} ao seu config para autocompletar no editor",
+  "Configure {highlight}model{/highlight} no config para definir seu modelo padrão",
+  "Substitua qualquer atalho em {highlight}tui.json{/highlight} pela seção {highlight}keybinds{/highlight}",
+  "Defina qualquer atalho como {highlight}none{/highlight} para desativá-lo completamente",
+  "Configure servidores MCP locais ou remotos na seção de config {highlight}mcp{/highlight}",
+  "Adicione arquivos {highlight}.md{/highlight} em {highlight}.opencode/commands/{/highlight} para prompts reutilizáveis",
+  "Use {highlight}$ARGUMENTS{/highlight}, {highlight}$1{/highlight}, {highlight}$2{/highlight} em comandos personalizados para entrada dinâmica",
+  "Use crases para injetar saída de shell (ex.: {highlight}`git status`{/highlight})",
+  "Adicione arquivos {highlight}.md{/highlight} em {highlight}.opencode/agents/{/highlight} para personas de IA especializadas",
+  "Configure permissões por agente para as ferramentas {highlight}edit{/highlight}, {highlight}bash{/highlight} e {highlight}webfetch{/highlight}",
+  'Use padrões como {highlight}"git *": "allow"{/highlight} para permissões granulares de bash',
+  'Defina {highlight}"rm -rf *": "deny"{/highlight} para bloquear comandos destrutivos',
+  'Configure {highlight}"git push": "ask"{/highlight} para exigir aprovação antes de enviar',
+  'Defina {highlight}"formatter": true{/highlight} para ativar formatadores integrados',
+  'Defina {highlight}"formatter": false{/highlight} para desativar formatadores herdados',
+  "Defina comandos de formatador personalizados com extensões de arquivo no config",
+  'Defina {highlight}"lsp": true{/highlight} para ativar a análise de código LSP integrada',
+  "Crie arquivos {highlight}.ts{/highlight} em {highlight}.opencode/tools/{/highlight} para definir novas ferramentas de LLM",
+  "Definições de ferramentas podem invocar scripts escritos em Python, Go, etc",
+  "Adicione arquivos {highlight}.ts{/highlight} em {highlight}.opencode/plugins/{/highlight} para ganchos de eventos",
+  "Use plugins para enviar notificações do sistema quando as sessões terminarem",
+  "Crie um plugin para impedir que o OpenCode leia arquivos sensíveis",
+  "Use {highlight}opencode run{/highlight} para scripts não interativos",
+  "Use {highlight}opencode --continue{/highlight} para retomar a última sessão",
+  "Use {highlight}opencode run -f file.ts{/highlight} para anexar arquivos via CLI",
+  "Use {highlight}--format json{/highlight} para saída legível por máquina em scripts",
+  "Execute {highlight}opencode serve{/highlight} para acesso headless via API ao OpenCode",
+  "Use {highlight}opencode run --attach{/highlight} para conectar a um servidor em execução",
+  "Execute {highlight}opencode upgrade{/highlight} para atualizar para a versão mais recente",
+  "Execute {highlight}opencode auth list{/highlight} para ver todos os provedores configurados",
+  "Execute {highlight}opencode agent create{/highlight} para criação guiada de agentes",
+  "Use {highlight}/opencode{/highlight} em issues/PRs do GitHub para acionar ações de IA",
+  "Execute {highlight}opencode github install{/highlight} para configurar o workflow do GitHub",
+  "Comente {highlight}/opencode fix this{/highlight} em issues para criar PRs automaticamente",
+  "Comente {highlight}/oc{/highlight} em linhas de código de PRs para revisões direcionadas",
+  'Use {highlight}"theme": "system"{/highlight} para combinar com as cores do seu terminal',
+  "Crie arquivos de tema JSON no diretório {highlight}.opencode/themes/{/highlight}",
+  "Os temas suportam variantes escura/clara para ambos os modos",
+  "Use códigos de cor xterm numéricos 0-255 em temas JSON personalizados",
+  "Use {highlight}{env:VAR_NAME}{/highlight} para variáveis de ambiente no config",
+  "Use {highlight}{file:path}{/highlight} para incluir o conteúdo de arquivos em valores de config",
+  "Use {highlight}instructions{/highlight} no config para carregar arquivos de regras adicionais",
+  "Defina o {highlight}temperature{/highlight} do agente de 0.0 (focado) a 1.0 (criativo)",
+  "Configure {highlight}steps{/highlight} para limitar iterações agentivas por requisição",
+  'Defina {highlight}"tools": {"bash": false}{/highlight} para desativar ferramentas específicas',
+  'Defina {highlight}"mcp_*": false{/highlight} para desativar todas as ferramentas de um servidor MCP',
+  "Substitua as configurações globais de ferramentas por configuração de agente",
+  'Defina {highlight}"share": "auto"{/highlight} para compartilhar automaticamente todas as sessões',
+  'Defina {highlight}"share": "disabled"{/highlight} para impedir qualquer compartilhamento de sessão',
+  "Execute {highlight}/unshare{/highlight} para remover uma sessão do acesso público",
+  "A permissão {highlight}doom_loop{/highlight} impede loops infinitos de chamadas de ferramentas",
+  "A permissão {highlight}external_directory{/highlight} protege arquivos fora do projeto",
+  "Execute {highlight}opencode debug config{/highlight} para diagnosticar a configuração",
+  "Use a flag {highlight}--print-logs{/highlight} para ver logs detalhados no stderr",
+  (shortcuts) => `Use ${commandText("/timeline", shortcuts.sessionTimeline())} para ir a mensagens específicas`,
+  (shortcuts) => press(shortcuts.messagesToggleConceal(), "para alternar a visibilidade dos blocos de código nas mensagens"),
+  (shortcuts) => `Use ${commandText("/status", shortcuts.statusView())} para ver informações de status do sistema`,
+  "Ative {highlight}scroll_acceleration{/highlight} em {highlight}tui.json{/highlight} para rolagem suave",
   (shortcuts) =>
     shortcuts.commandList()
-      ? `Toggle username display in chat via the command palette (${shortcutText(shortcuts.commandList())})`
-      : "Toggle username display in chat via the command palette",
-  "Run {highlight}docker run -it --rm ghcr.io/anomalyco/opencode{/highlight} in a container",
-  "Use {highlight}/connect{/highlight} with OpenCode Zen for curated, tested models",
-  "Commit your project's {highlight}AGENTS.md{/highlight} file to Git for team sharing",
-  "Use {highlight}/review{/highlight} to review uncommitted changes, branches, or PRs",
-  (shortcuts) => `Use ${commandText("/help", shortcuts.helpShow())} to show the help dialog`,
-  "Use {highlight}/rename{/highlight} to rename the current session",
+      ? `Alternar exibição do nome de usuário no chat via paleta de comandos (${shortcutText(shortcuts.commandList())})`
+      : "Alternar exibição do nome de usuário no chat via paleta de comandos",
+  "Execute {highlight}docker run -it --rm ghcr.io/anomalyco/opencode{/highlight} em um container",
+  "Use {highlight}/connect{/highlight} com OpenCode Zen para modelos selecionados e testados",
+  "Envie o arquivo {highlight}AGENTS.md{/highlight} do seu projeto para o Git para compartilhamento em equipe",
+  "Use {highlight}/review{/highlight} para revisar alterações não commitadas, branches ou PRs",
+  (shortcuts) => `Use ${commandText("/help", shortcuts.helpShow())} para mostrar o diálogo de ajuda`,
+  "Use {highlight}/rename{/highlight} para renomear a sessão atual",
 ]
 
-const INPUT_UNDO_TIP: Tip = (shortcuts) => press(shortcuts.inputUndo(), "to undo changes in your prompt")
+const INPUT_UNDO_TIP: Tip = (shortcuts) => press(shortcuts.inputUndo(), "para desfazer alterações no seu prompt")
 const TERMINAL_SUSPEND_TIP: Tip = (shortcuts) =>
-  press(shortcuts.terminalSuspend(), "to suspend the terminal and return to your shell")
+  press(shortcuts.terminalSuspend(), "para suspender o terminal e voltar ao seu shell")

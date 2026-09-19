@@ -140,7 +140,7 @@ const layer = Layer.effect(
         const agents: Record<string, Info> = {
           build: {
             name: "build",
-            description: "The default agent. Executes tools based on configured permissions.",
+            description: "O agente padrão. Executa ferramentas conforme as permissões configuradas.",
             options: {},
             permission: Permission.merge(
               defaults,
@@ -155,7 +155,7 @@ const layer = Layer.effect(
           },
           plan: {
             name: "plan",
-            description: "Plan mode. Disallows all edit tools.",
+            description: "Modo plano. Desabilita todas as ferramentas de edição.",
             options: {},
             permission: Permission.merge(
               defaults,
@@ -181,7 +181,7 @@ const layer = Layer.effect(
           },
           general: {
             name: "general",
-            description: `General-purpose agent for researching complex questions and executing multi-step tasks. Use this agent to execute multiple units of work in parallel.`,
+            description: `Agente de propósito geral para pesquisar questões complexas e executar tarefas em várias etapas. Use este agente para executar múltiplas unidades de trabalho em paralelo.`,
             permission: Permission.merge(
               defaults,
               Permission.fromConfig({
@@ -210,7 +210,7 @@ const layer = Layer.effect(
               }),
               user,
             ),
-            description: `Fast agent specialized for exploring codebases. Use this when you need to quickly find files by patterns (eg. "src/components/**/*.tsx"), search code for keywords (eg. "API endpoints"), or answer questions about the codebase (eg. "how do API endpoints work?"). When calling this agent, specify the desired thoroughness level: "quick" for basic searches, "medium" for moderate exploration, or "very thorough" for comprehensive analysis across multiple locations and naming conventions.`,
+            description: `Agente rápido especializado em explorar bases de código. Use quando precisar encontrar rapidamente arquivos por padrões (ex.: "src/components/**/*.tsx"), buscar código por palavras-chave (ex.: "API endpoints"), ou responder perguntas sobre a base de código (ex.: "como funcionam os endpoints da API?"). Ao chamar este agente, especifique o nível de profundidade desejado: "quick" para buscas básicas, "medium" para exploração moderada, ou "very thorough" para análise abrangente em múltiplas localizações e convenções de nomenclatura.`,
             prompt: PROMPT_EXPLORE,
             options: {},
             mode: "subagent",

@@ -110,7 +110,7 @@ export function DialogSessionList() {
           result = await sdk.client.experimental.workspace.create({ type: selection.workspaceType, branch: null })
         } catch (err) {
           toast.show({
-            title: "Failed to create workspace",
+            title: "Falha ao criar workspace",
             message: errorMessage(err),
             variant: "error",
           })
@@ -119,8 +119,8 @@ export function DialogSessionList() {
         const workspace = result?.data
         if (!workspace) {
           toast.show({
-            title: "Failed to create workspace",
-            message: errorMessage(result?.error ?? "no response"),
+            title: "Falha ao criar workspace",
+            message: errorMessage(result?.error ?? "sem resposta"),
             variant: "error",
           })
           return
@@ -154,7 +154,7 @@ export function DialogSessionList() {
           if (result.error) {
             toast.show({
               variant: "error",
-              title: "Failed to delete workspace",
+              title: "Falha ao excluir workspace",
               message: errorMessage(result.error),
             })
             return false
@@ -262,7 +262,7 @@ export function DialogSessionList() {
       })
       .filter((x) => x !== undefined)
 
-    return [...pinned.map((id) => buildOption(id, "Pinned")).filter((x) => x !== undefined), ...remaining]
+    return [...pinned.map((id) => buildOption(id, "Fixadas")).filter((x) => x !== undefined), ...remaining]
   })
 
   onMount(() => {
@@ -271,7 +271,7 @@ export function DialogSessionList() {
 
   return (
     <DialogSelect
-      title="Sessions"
+      title="SessÃµes"
       options={options()}
       skipFilter={true}
       preserveSelection={true}
@@ -297,7 +297,7 @@ export function DialogSessionList() {
         },
         {
           command: "session.delete",
-          title: "delete",
+          title: "excluir",
           onTrigger: async (option) => {
             if (toDelete() === option.value) {
               const session = sessions().find((item) => item.id === option.value)
@@ -313,7 +313,7 @@ export function DialogSessionList() {
                   } else {
                     toast.show({
                       variant: "error",
-                      title: "Failed to delete session",
+                      title: "Falha ao excluir sessão",
                       message: errorMessage(result.error),
                     })
                   }
@@ -326,7 +326,7 @@ export function DialogSessionList() {
                 } else {
                   toast.show({
                     variant: "error",
-                    title: "Failed to delete session",
+                    title: "Falha ao excluir sessão",
                     message: errorMessage(err),
                   })
                 }

@@ -1054,7 +1054,7 @@ const tui: TuiPlugin = async (api) => {
     commands: [
       {
         name: "diff.open",
-        title: "Open diff viewer",
+        title: "Abrir visualizador de diff",
         slashName: "diff",
         category: "VCS",
         namespace: "palette",

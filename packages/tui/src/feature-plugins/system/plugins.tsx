@@ -241,7 +241,7 @@ const tui: TuiPlugin = async (api) => {
       {
         name: "plugins.list",
         title: "Plugins",
-        category: "System",
+        category: "Sistema",
         namespace: "palette",
         run() {
           show(api)
@@ -249,8 +249,8 @@ const tui: TuiPlugin = async (api) => {
       },
       {
         name: "plugins.install",
-        title: "Install plugin",
-        category: "System",
+        title: "Instalar plugin",
+        category: "Sistema",
         namespace: "palette",
         run() {
           showInstall(api)

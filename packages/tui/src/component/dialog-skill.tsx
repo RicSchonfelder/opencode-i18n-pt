@@ -40,7 +40,7 @@ export function DialogSkill(props: DialogSkillProps) {
       title: skill.name.padEnd(maxWidth),
       description: skill.description?.replace(/\s+/g, " ").trim(),
       value: skill.name,
-      category: "Skills",
+      category: "Habilidades",
       onSelect: () => {
         props.onSelect(skill.name)
         dialog.clear()
@@ -50,8 +50,8 @@ export function DialogSkill(props: DialogSkillProps) {
 
   return (
     <DialogSelect
-      title="Skills"
-      placeholder="Search skills…"
+title="Habilidades"
+      placeholder="Buscar habilidades…"
       options={options()}
       renderFilter={!showError()}
       locked={showError()}
@@ -59,7 +59,7 @@ export function DialogSkill(props: DialogSkillProps) {
         showError() ? (
           <box paddingLeft={4} paddingRight={4}>
             <text fg={theme.error} attributes={TextAttributes.BOLD}>
-              Could not load skills
+              Não foi possível carregar as habilidades
             </text>
             <text fg={theme.textMuted}>{errorMessage(loadError())}</text>
           </box>

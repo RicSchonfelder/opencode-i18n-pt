@@ -335,7 +335,7 @@ export function Prompt(props: PromptProps) {
   const promptCommands = createMemo(() =>
     [
       {
-        title: "Clear prompt",
+        title: "Limpar prompt",
         name: "prompt.clear",
         category: "Prompt",
         hidden: true,
@@ -345,7 +345,7 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Submit prompt",
+        title: "Enviar prompt",
         name: "prompt.submit",
         category: "Prompt",
         hidden: true,
@@ -358,7 +358,7 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Remove editor context",
+        title: "Remover contexto do editor",
         name: "prompt.editor_context.clear",
         category: "Prompt",
         enabled: Boolean(editorContext()),
@@ -368,7 +368,7 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Paste",
+        title: "Colar",
         name: "prompt.paste",
         category: "Prompt",
         hidden: true,
@@ -390,9 +390,9 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Interrupt session",
+        title: "Interromper sessão",
         name: "session.interrupt",
-        category: "Session",
+        category: "Sessão",
         hidden: true,
         enabled: status().type !== "idle",
         run: () => {
@@ -421,8 +421,8 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Open editor",
-        category: "Session",
+        title: "Abrir editor",
+        category: "Sessão",
         name: "prompt.editor",
         slashName: "editor",
         run: async () => {
@@ -513,7 +513,7 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Skills",
+        title: "Habilidades",
         name: "prompt.skills",
         category: "Prompt",
         slashName: "skills",
@@ -534,9 +534,9 @@ export function Prompt(props: PromptProps) {
       },
       {
         title: "Warp",
-        desc: "Change the workspace for the session",
+        desc: "Alterar o workspace da sessão",
         name: "workspace.set",
-        category: "Session",
+        category: "Sessão",
         enabled: Flag.OPENCODE_EXPERIMENTAL_WORKSPACES,
         slashName: "warp",
         run: () => {
@@ -544,10 +544,10 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Move session",
-        desc: "Move to another project dir",
+        title: "Mover sessão",
+        desc: "Mover para outro diretório do projeto",
         name: "session.move",
-        category: "Session",
+        category: "Sessão",
         slashName: "move",
         run: () => {
           move.open()
@@ -736,7 +736,7 @@ export function Prompt(props: PromptProps) {
   const stashCommands = createMemo(() =>
     [
       {
-        title: "Stash prompt",
+        title: "Guardar prompt",
         name: "prompt.stash",
         category: "Prompt",
         enabled: !!store.prompt.input,
@@ -754,7 +754,7 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Stash pop",
+        title: "Recuperar prompt",
         name: "prompt.stash.pop",
         category: "Prompt",
         enabled: stash.list().length > 0,
@@ -770,7 +770,7 @@ export function Prompt(props: PromptProps) {
         },
       },
       {
-        title: "Stash list",
+        title: "Listar prompts",
         name: "prompt.stash.list",
         category: "Prompt",
         enabled: stash.list().length > 0,
@@ -1313,10 +1313,10 @@ export function Prompt(props: PromptProps) {
     if (store.mode === "shell") {
       if (!shell().length) return undefined
       const example = shell()[store.placeholder % shell().length]
-      return `Run a command… "${example}"`
+return `Executar um comando… "${example}"`
     }
     if (!list().length) return undefined
-    return `Ask anything… "${list()[store.placeholder % list().length]}"`
+    return `Pergunte qualquer coisa… "${list()[store.placeholder % list().length]}"`
   })
 
   const spinnerDef = createMemo(() => {
