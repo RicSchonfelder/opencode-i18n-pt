@@ -7,6 +7,16 @@
     </picture>
   </a>
 </p>
+
+> ## 🇧🇷 Fork com tradução PT-BR da TUI
+>
+> Este fork traduz a interface de terminal (TUI) para Português (Brasil).
+>
+> - **Branch recomendada:** `feat/pt-br-stable` (base `v1.18.25`) — estável e funcional
+> - **Branch dev:** `feat/pt-br-tui` (base `dev`) — tem bug ao enviar prompt
+> - **Detalhes:** veja [`TRADUCAO-PT-BR.md`](TRADUCAO-PT-BR.md)
+> - **⚠️ Build:** o binário Windows deve ser cross-compilado no **Linux/WSL** (build nativo no Windows gera bug no envio de prompts)
+
 <p align="center">The open source AI coding agent.</p>
 <p align="center">
   <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
