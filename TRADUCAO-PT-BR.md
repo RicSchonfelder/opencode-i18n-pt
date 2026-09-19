@@ -43,13 +43,21 @@ bun install --frozen-lockfile
 # typecheck da TUI
 cd packages/tui && bun run typecheck && cd ../..
 
-# build binário nativo (Windows x64)
-cd packages/opencode
-bun run build -- --single --skip-embed-web-ui
+# ⚠️ IMPORTANTE: o build DEVE ser feito no LINUX (WSL), não no Windows
+# Buildar o binário Windows nativamente no Windows gera um binário com bug:
+# "TypeError: undefined is not an object (evaluating 'a.name')" no layer-node
+# ao enviar prompts. O release oficial é cross-compilado no Linux (GitHub Actions).
+wsl
+cd /mnt/c/.../opencode-i18n-pt/packages/opencode
+bun run build   # builda todos os targets (inclui Windows x64)
+
+# o binário Windows fica em:
+./dist/opencode-windows-x64/bin/opencode.exe
 
 # testar num diretório limpo (o .opencode/ interno do repo pode conflitar com build dev)
-cd ../.. && mkdir -p /tmp/test-clean
-./packages/opencode/dist/opencode-windows-x64/bin/opencode.exe
+mkdir -p /tmp/test-clean
+cd /tmp/test-clean
+/path/para/dist/opencode-windows-x64/bin/opencode.exe run "diga OK"
 ```
 
 > **Nota:** não rode o binário dentro do diretório do repositório — o `.opencode/` interno do próprio OpenCode referencia plugins e agentes de desenvolvimento que quebram em builds dev.
