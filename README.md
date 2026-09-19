@@ -12,7 +12,7 @@
 >
 > Este fork traduz a interface de terminal (TUI) para Português (Brasil).
 >
-> - **Branch recomendada:** `feat/pt-br-stable` (base `v1.18.25`) — estável e funcional
+> - **Branch recomendada:** `feat/pt-br-stable-1831` (base `v1.18.31`) — estável e funcional
 > - **Branch dev:** `feat/pt-br-tui` (base `dev`) — tem bug ao enviar prompt
 > - **Detalhes:** veja [`TRADUCAO-PT-BR.md`](TRADUCAO-PT-BR.md)
 > - **⚠️ Build:** o binário Windows deve ser cross-compilado no **Linux/WSL** (build nativo no Windows gera bug no envio de prompts)
