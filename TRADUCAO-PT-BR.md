@@ -2,10 +2,10 @@
 
 Fork do [OpenCode](https://github.com/anomalyco/opencode) com a interface **TUI traduzida para Português (Brasil)**.
 
-Branch de tradução estável: `feat/pt-br-stable-1831`
+Branch de tradução estável: `feat/pt-br-stable`
 Base: `v1.18.31` (release estável mais recente)
 
-> **Nota:** também existe a branch `feat/pt-br-tui` baseada na `dev` (mais recente), mas a branch `dev` do upstream contém um bug ao enviar prompts (`TypeError: evaluating 'a.name'` em `SystemPrompt.environment`). Use a **estável** para uso diário.
+> **Nota:** a branch `dev` do upstream contém um bug ao enviar prompts (`TypeError: evaluating 'a.name'` em `SystemPrompt.environment`). Use a **estável** para uso diário.
 
 ## O que está traduzido
 
