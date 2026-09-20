@@ -17,6 +17,66 @@
 > - **Detalhes:** veja [`TRADUCAO-PT-BR.md`](TRADUCAO-PT-BR.md)
 > - **⚠️ Build:** o binário Windows deve ser cross-compilado no **Linux/WSL** (build nativo no Windows gera bug no envio de prompts)
 
+## 🚀 Instalação Rápida (para outro opencode)
+
+Outro opencode pode instalar esta versão automaticamente com:
+
+```markdown
+# Para instalar a versão PT-BR do OpenCode (v1.18.31)
+
+1. Clone este fork:
+```bash
+git clone --depth 1 --branch feat/pt-br-stable https://github.com/RicSchonfelder/opencode-i18n-pt.git
+cd opencode-i18n-pt
+```
+
+2. No WSL/Linux, instale as dependências e builda:
+```bash
+cd packages/opencode
+bun install --frozen-lockfile
+bun run build  # gera opencode-linux-x64-baseline + Windows
+```
+
+3. O binário Windows estará em:
+```
+packages/opencode/dist/opencode-windows-x64-baseline/bin/opencode.exe
+```
+
+> ⚠️ **Importante:** buildar no **Linux/WSL** (não no Windows nativo) — cross-compilar evita o bug `TypeError: a.name` ao enviar prompts.
+
+---
+
+### Instalação via script (Windows)
+
+O repositório `legacy-setup` tem instalador com opção PT-BR:
+
+```powershell
+# Remoto (direto do GitHub)
+powershell -c "irm https://raw.githubusercontent.com/RicSchonfelder/legacy-setup/main/install-opencode.ps1 | iex" -PtBr
+
+# Local
+powershell -ExecutionPolicy Bypass -File install-opencode.ps1 -PtBr
+```
+
+Instala a versão pt-BR em `D:\Programas\opencode\bin\opencode.exe` (cria `D:\Programas` se necessário).
+
+---
+
+### Teste rápido
+
+```bash
+opencode --version
+# 0.0.0-feat/pt-br-stable-1831-... (PT-BR)
+
+opencode --help
+# Logo ASCII + ajuda em PT-BR
+
+opencode run --pure --model deepseek/deepseek-chat "diga apenas OK"
+# Responde "OK" (se deepseek key configurada)
+```
+
+---
+
 <p align="center">The open source AI coding agent.</p>
 <p align="center">
   <a href="https://opencode.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
