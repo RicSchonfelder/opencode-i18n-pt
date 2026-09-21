@@ -138,6 +138,13 @@ const table = sqliteTable("session", {
 })
 ```
 
+## Database / Session Persistence
+
+- The unified database is always `opencode.db` in `~/.local/share/opencode/`.
+- Builds from non-official channels previously created `opencode-<channel>.db`, which caused sessions to disappear after updates.
+- Fix: `packages/core/src/database/database.ts` now prefers `opencode.db` when it already exists, and `OPENCODE_DISABLE_CHANNEL_DB=1` is set in `.zshrc` as a safeguard.
+- If you create a new branch/feature build, sessions are preserved in `opencode.db` automatically.
+
 ## Testing
 
 - Avoid mocks as much as possible, you shouldn't be using globalThis.\* at all unless it's the only option.
