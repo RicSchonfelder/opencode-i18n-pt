@@ -1,4 +1,4 @@
-# Instalador Windows (legacy)
+﻿# Instalador Windows (legacy)
 
 Instalador one-liner para Windows antigos (7/8/10/11) — sem Chocolatey, sem WSL, sem npm, sem admin.
 
@@ -9,7 +9,7 @@ Padrao de uso (igual `irm massgrave.dev/get | iex`):
 Abra o PowerShell e cole:
 
 ```powershell
-powershell -c "irm https://raw.githubusercontent.com/RicSchonfelder/opencode-ptbr/main/installer/windows/install-opencode.ps1 | iex"
+powershell -c "irm https://raw.githubusercontent.com/RicSchonfelder/opencode-ptbr/dev/installer/windows/install-opencode.ps1 | iex"
 ```
 
 O que faz:
@@ -24,7 +24,7 @@ O que faz:
 Para instalar a versao com a TUI traduzida para Portugues (Brasil), use a flag `-PtBr`:
 
 ```powershell
-powershell -c "irm https://raw.githubusercontent.com/RicSchonfelder/opencode-ptbr/main/installer/windows/install-opencode.ps1 | iex" -PtBr
+powershell -c "irm https://raw.githubusercontent.com/RicSchonfelder/opencode-ptbr/dev/installer/windows/install-opencode.ps1 | iex" -PtBr
 ```
 
 Localmente:
